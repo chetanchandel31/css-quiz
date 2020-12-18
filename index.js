@@ -1,12 +1,15 @@
-let readlineSync = require('readline-sync');
+const readlineSync = require('readline-sync');
+const chalk = require('chalk');
 
-let name = readlineSync.question('whats your name? ');//take input
+let intName = readlineSync.question('whats your name? ');//take input
+
+const name = intName.charAt(0).toUpperCase() + intName.substr(1);//some processing
 
 let score = 0;
 
 let quesAnswers = [
   {
-    question: "In the following code snippet, what value is given for the bottom-right corner?\nborder-radius: 10px 20px 30px 40px \n a. 20 \n b. 10 \n c. 30 \n d. 40 \n",
+    question: "In the following code snippet, what value is given for the bottom-right corner?\n{\nborder-radius: 10px 20px 30px 40px;\n} \n a. 20 \n b. 10 \n c. 30 \n d. 40 \n",
     answer: 'c',
   },
   {
@@ -48,23 +51,23 @@ function checkHighScore () {
 
 function playQuiz (question, corrAnswer, quesNum) {
   let answer = readlineSync.question(`Q${quesNum}. ${question}`);
-  
+    
   if (answer === corrAnswer) {
-    console.log(`Yes, that's the correct answer.`);
+    console.log(chalk.rgb(0, 255, 0)("Yes, that's the correct answer."));
     score += 4;
   } else {
-    console.log(`Sorry, that's a wrong answer. The correct answer was "${corrAnswer}".`);
+    console.log(chalk`{rgb(255, 0, 0) Sorry, that's a wrong answer. The correct answer was "${corrAnswer}".}`);
     score -= 1;
   }
-  console.log(`Your current score is ${score}`);
-  console.log('---------------------------');
+  console.log(`Your current score is ${chalk.black.bold.bgYellow(' '+score+' ')}.`);
+  console.log('------------------------------------------------------');
 }
 
 //actual execution
-console.log(`Hey ${name} lets start our CSS quiz.`);
+console.log(chalk`{rgb(10, 100, 200) Hey ${name}, lets start our CSS quiz.}`);
 
 quesAnswers.map((obj, i) => playQuiz(obj.question, obj.answer, i+1));
 
-console.log(`The quiz is over. ${name} scored ${score} points.`);
+console.log(`The quiz is over. ${name}'s final score is ${chalk.black.bold.bgCyanBright(' '+score+' ')} points.`);
 
 checkHighScore();

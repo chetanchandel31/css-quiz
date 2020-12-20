@@ -36,7 +36,7 @@ const highScoreHolders = [
     score: 19
   },
   {
-    name: 'grey-matter',//one from ben-10
+    name: 'Pikachu',//one from ben-10
     score: 12
   }
 ]
@@ -44,7 +44,7 @@ const highScoreHolders = [
 function checkHighScore () {
   for (var i = 0; i<highScoreHolders.length; i++) {
     if (score > highScoreHolders[i].score) {
-      console.log(`Congrats you have beaten ${highScoreHolders[i].name}'s highscore.`);
+      console.log(`Congrats you have beaten ${highScoreHolders[i].name}'s highscore of ${highScoreHolders[i].score} points.`);
     }
   }
 }

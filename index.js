@@ -36,7 +36,7 @@ const highScoreHolders = [
     score: 19
   },
   {
-    name: 'Pikachu',//one from ben-10
+    name: 'pikachu',
     score: 12
   }
 ]
